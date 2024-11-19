@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        roboto: "var(--font-roboto)",
+        lato: "var(--font-lato)",
       },
       colors: {
         background: "hsl(var(--background))",

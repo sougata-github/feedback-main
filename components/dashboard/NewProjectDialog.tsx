@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogContent,
@@ -9,10 +11,13 @@ import {
 import NewProjectForm from "./NewProjectForm";
 import { Button } from "../ui/button";
 import { PlusIcon } from "lucide-react";
+import { useState } from "react";
 
 const NewProjectDialog = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button>
           <PlusIcon />
@@ -26,7 +31,7 @@ const NewProjectDialog = () => {
             Create a new project to get started.
           </DialogDescription>
         </DialogHeader>
-        <NewProjectForm />
+        <NewProjectForm setIsOpen={setIsOpen} />
       </DialogContent>
     </Dialog>
   );

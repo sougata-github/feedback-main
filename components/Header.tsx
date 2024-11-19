@@ -14,15 +14,16 @@ import { usePathname } from "next/navigation";
 
 const Header = () => {
   const pathname = usePathname();
-  const isDashboard = pathname.startsWith("/dashboard");
+  const isProtected =
+    pathname.startsWith("/projects") || pathname.startsWith("/dashboard");
 
   return (
     <header className="w-full flex h-14 px-4 py-10 border-b">
       <nav className="w-full max-w-6xl flex items-center justify-between mx-auto">
         {/* Logo */}
         <div className="flex gap-2 items-center justify-center">
-          <h1 className="font-roboto text-2xl font-extrabold">Easy</h1>{" "}
-          <div className="-ml-1 px-2 py-1 bg-black rounded text-2xl text-white font-extrabold font-roboto">
+          <h1 className="font-lato text-2xl font-black">Easy</h1>{" "}
+          <div className="-ml-1 px-2 py-1 bg-black rounded text-2xl text-white font-black font-lato">
             <span>Review</span>
           </div>
         </div>
@@ -45,7 +46,7 @@ const Header = () => {
                     },
                   }}
                 />
-                {!isDashboard && (
+                {!isProtected && (
                   <Link href="/dashboard" className="group">
                     <Button variant="ghost">
                       Enter

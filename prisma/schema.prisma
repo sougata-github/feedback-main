@@ -21,7 +21,7 @@ model Profile {
 model Project{
   id String @id @default(uuid())
   name String
-  description String 
+  description String? 
   url String 
 
   authorId String 

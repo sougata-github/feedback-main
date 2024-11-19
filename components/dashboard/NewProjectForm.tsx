@@ -16,17 +16,49 @@ import {
 import { Input } from "@/components/ui/input";
 import { newProjectSchema } from "@/schemas/newProjectSchema";
 import { Textarea } from "../ui/textarea";
+import { Dispatch, SetStateAction, useTransition } from "react";
+import { createProject } from "@/actions/project";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-const NewProjectForm = () => {
+interface Props {
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const NewProjectForm = ({ setIsOpen }: Props) => {
   const form = useForm<z.infer<typeof newProjectSchema>>({
     resolver: zodResolver(newProjectSchema),
     defaultValues: {
       name: "",
+      url: "",
+      description: "",
     },
   });
 
+  const router = useRouter();
+
+  const [isPending, startTransition] = useTransition();
+
   const onSubmit = (values: z.infer<typeof newProjectSchema>) => {
-    console.log(values);
+    startTransition(() => {
+      createProject(values)
+        .then((data) => {
+          if (data?.error) {
+            toast.error(data.error);
+          }
+
+          if (data?.project) {
+            form.reset();
+            setIsOpen(false);
+            toast.success("Project created");
+            router.push(`/projects/${data.project.id}`);
+          }
+        })
+        .catch(() => {
+          toast.error("Something went wrong!");
+        });
+    });
   };
 
   return (
@@ -68,7 +100,7 @@ const NewProjectForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-sm sm:text-base">
-                Project Description
+                Project Description (optional)
               </FormLabel>
               <FormControl>
                 <Textarea
@@ -81,7 +113,13 @@ const NewProjectForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button disabled={isPending} type="submit" className="w-full">
+          {isPending ? (
+            <Loader className="size-5 text-white animate-spin transition-all" />
+          ) : (
+            "Submit"
+          )}
+        </Button>
       </form>
     </Form>
   );

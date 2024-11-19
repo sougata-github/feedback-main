@@ -6,3 +6,10 @@ export type userData = {
   userId: string;
   id?: string;
 };
+
+export type ProjectData = {
+  name: string;
+  url: string;
+  description: string;
+  authorId: string;
+};
