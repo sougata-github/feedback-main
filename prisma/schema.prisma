@@ -14,4 +14,31 @@ model Profile {
       lastName String
       imageUrl String @db.Text
       email String @db.Text
+
+      projects Project[]
+}
+
+model Project{
+  id String @id @default(uuid())
+  name String
+  description String 
+  url String 
+
+  authorId String 
+  profile Profile @relation(fields: [authorId], references: [id])
+
+  feedbacks Feedback[]
+}
+
+model Feedback {
+  id String @id @default(uuid())
+  
+  name String
+  email String
+  content String
+
+  createdAt DateTime @default(now())
+
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
 }
