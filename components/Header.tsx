@@ -37,7 +37,7 @@ const Header = () => {
 
           <ClerkLoaded>
             <SignedIn>
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-center">
                 <UserButton
                   appearance={{
                     elements: {
@@ -49,7 +49,7 @@ const Header = () => {
                   <Link href="/dashboard" className="group">
                     <Button variant="ghost">
                       Enter
-                      <ChevronRight className="size-5 sm:group-hover:translate-x-1 transition-all" />
+                      <ChevronRight className="size-5 sm:group-hover:translate-x-[2px] transition-all mt-[2.5px]" />
                     </Button>
                   </Link>
                 )}
