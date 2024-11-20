@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import NewProjectForm from "./NewProjectForm";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 

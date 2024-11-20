@@ -1,10 +1,12 @@
-import NewProjectDialog from "@/components/dashboard/NewProjectDialog";
+import NewProjectDialog from "@/components/main/dashboard/NewProjectDialog";
+import Header from "@/components/main/Header";
 
 const page = async () => {
   return (
-    <div>
+    <section>
+      <Header title="Dashboard" />
       <NewProjectDialog />
-    </div>
+    </section>
   );
 };
 

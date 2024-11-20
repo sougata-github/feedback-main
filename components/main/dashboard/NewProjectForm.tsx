@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { newProjectSchema } from "@/schemas/newProjectSchema";
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "../../ui/textarea";
 import { Dispatch, SetStateAction, useTransition } from "react";
 import { createProject } from "@/actions/project";
 import { toast } from "sonner";

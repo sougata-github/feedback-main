@@ -27,3 +27,27 @@ export async function getProject(id: string) {
     console.log(error);
   }
 }
+
+export async function getAllProjects() {
+  try {
+    const profile = await currentProfile();
+
+    if (!profile) {
+      throw new Error("Unauthorized!");
+    }
+
+    const project = await db.project.findMany({
+      where: {
+        authorId: profile.id,
+      },
+    });
+
+    if (!project) {
+      throw new Error("Project not found");
+    }
+
+    return project;
+  } catch (error) {
+    console.log(error);
+  }
+}

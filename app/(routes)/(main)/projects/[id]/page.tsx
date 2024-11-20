@@ -1,3 +1,4 @@
+import Header from "@/components/main/Header";
 import NoFeedback from "@/components/projects/NoFeedback";
 import { getProject } from "@/lib/projects";
 
@@ -14,7 +15,11 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     return <NoFeedback id={id} />;
   }
 
-  return <div></div>;
+  return (
+    <div>
+      <Header title={project.name || ""} />
+    </div>
+  );
 };
 
 export default page;

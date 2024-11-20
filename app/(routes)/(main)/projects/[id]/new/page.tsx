@@ -1,4 +1,5 @@
 import CopyButton from "@/components/CopyButton";
+import Header from "@/components/main/Header";
 import { getProject } from "@/lib/projects";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -15,20 +16,23 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   }
 
   return (
-    <div>
-      <h1 className="font-bold text-xl">Start Collecting Feedback</h1>
+    <section>
+      <Header title="Start Collecting Feedback" />
       <p className="text-base text-secondary-foreground">
         Embed the code in your site.
       </p>
 
       <div className="mt-8 px-6 py-8 bg-black/5 rounded-lg relative">
         <CopyButton text="" />
-        <code>
-          {`<my-widget project="${project.id}"></my-widget>`}
-          {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
-        </code>
+        <div className="max-w-lg mt-2">
+          {" "}
+          <code>
+            {`<my-widget project="${project.id}"></my-widget>`}
+            {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
+          </code>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

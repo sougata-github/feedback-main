@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ClerkLoaded,
   ClerkLoading,
@@ -7,26 +5,22 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Link from "next/link";
-import { ChevronRight, Loader } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { ChevronRight, Loader, Sparkles } from "lucide-react";
 
 const Header = () => {
-  const pathname = usePathname();
-  const isProtected =
-    pathname.startsWith("/projects") || pathname.startsWith("/dashboard");
-
   return (
     <header className="w-full flex h-14 px-4 py-10 border-b">
       <nav className="w-full max-w-6xl flex items-center justify-between mx-auto">
         {/* Logo */}
-        <div className="flex gap-2 items-center justify-center">
-          <h1 className="font-lato text-2xl font-black">Easy</h1>{" "}
-          <div className="-ml-1 px-2 py-1 bg-black rounded text-2xl text-white font-black font-lato">
-            <span>Review</span>
-          </div>
-        </div>
+        <Link
+          href="/"
+          className="flex items-center gap-1 font-sempione font-semibold text-2xl"
+        >
+          <span>easyreview</span>
+          <Sparkles className="size-4" />
+        </Link>
 
         {/* Clerk Stuff */}
         <div>
@@ -46,14 +40,12 @@ const Header = () => {
                     },
                   }}
                 />
-                {!isProtected && (
-                  <Link href="/dashboard" className="group">
-                    <Button variant="ghost">
-                      Enter
-                      <ChevronRight className="size-5 sm:group-hover:translate-x-[2px] transition-all mt-[2.5px]" />
-                    </Button>
-                  </Link>
-                )}
+                <Link href="/dashboard" className="group">
+                  <Button variant="ghost">
+                    Enter
+                    <ChevronRight className="size-5 sm:group-hover:translate-x-[2px] transition-all mt-[2.5px]" />
+                  </Button>
+                </Link>
               </div>
             </SignedIn>
 
