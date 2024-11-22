@@ -18,7 +18,7 @@ const Header = () => {
           href="/"
           className="flex items-center gap-1 font-sempione font-semibold text-2xl"
         >
-          <span>easyreview</span>
+          <span>EasyReview</span>
           <Sparkles className="size-4" />
         </Link>
 

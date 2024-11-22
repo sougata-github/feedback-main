@@ -8,11 +8,9 @@ const MainLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <SidebarProvider>
       <MainSidebar projects={projects || []} />
-      <main className="bg-black/5 flex-1 h-screen py-8 md:py-12 flex justify-between px-4 md:px-8">
-        <div className="">
-          <div className="max-w-6xl mx-auto">{children}</div>
-        </div>
-        <SidebarTrigger />
+      <main className="overflow-x-hidden overflow-y-auto bg-black/5 flex-1 min-h-screen py-8 md:py-12 px-4 md:px-8 relative">
+        <div className="md:flex-1">{children}</div>
+        <SidebarTrigger className="absolute top-8 md:top-12 right-4 md:right-8" />
       </main>
     </SidebarProvider>
   );

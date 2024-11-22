@@ -11,14 +11,15 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     return <p className="text-xl">Project does not exist!</p>;
   }
 
-  if (project.feedbacks.length === 0) {
-    return <NoFeedback id={id} />;
-  }
-
   return (
-    <div>
+    <section>
       <Header title={project.name || ""} />
-    </div>
+      <p className="max-w-xl text-black/60">{project.description}</p>
+
+      <div className="mt-12">
+        {project.feedbacks.length === 0 && <NoFeedback id={id} />}
+      </div>
+    </section>
   );
 };
 

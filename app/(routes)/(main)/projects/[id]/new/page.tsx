@@ -1,5 +1,6 @@
 import CopyButton from "@/components/CopyButton";
 import Header from "@/components/main/Header";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getProject } from "@/lib/projects";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -18,19 +19,24 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <section>
       <Header title="Start Collecting Feedback" />
-      <p className="text-base text-secondary-foreground">
-        Embed the code in your site.
-      </p>
 
-      <div className="mt-8 px-6 py-8 bg-black/5 rounded-lg relative">
-        <CopyButton text="" />
-        <div className="max-w-lg mt-2">
-          {" "}
-          <code>
-            {`<my-widget project="${project.id}"></my-widget>`}
-            {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
-          </code>
-        </div>
+      <div className="flex flex-col gap-4 mt-12">
+        <Card className="pb-4 max-w-xl relative">
+          <CopyButton
+            text={`<my-widget project="${project.id}"></my-widget>\n<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
+          />
+          <CardHeader>
+            <CardTitle className="text-base text-secondary-foreground font-medium">
+              Embed the following code in your site.
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="py-2">
+            <code>
+              {`<my-widget project="${project.id}"></my-widget>`}
+              {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
+            </code>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

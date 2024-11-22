@@ -1,3 +1,5 @@
+import { Project, Feedback } from "@prisma/client";
+
 export type userData = {
   firstName: string;
   lastName: string;
@@ -12,4 +14,8 @@ export type ProjectData = {
   url: string;
   description: string;
   authorId: string;
+};
+
+export type ProjectWithFeedbacks = Project & {
+  feedbacks: Feedback[];
 };

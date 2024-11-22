@@ -19,7 +19,7 @@ const NewProjectDialog = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button className="w-fit">
           <PlusIcon />
           Create Project
         </Button>

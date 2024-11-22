@@ -40,6 +40,9 @@ export async function getAllProjects() {
       where: {
         authorId: profile.id,
       },
+      include: {
+        feedbacks: true,
+      },
     });
 
     if (!project) {
