@@ -35,7 +35,7 @@ model Feedback {
   
   name String
   email String
-  content String
+  message String
 
   createdAt DateTime @default(now())
 

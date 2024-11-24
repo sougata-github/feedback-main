@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { newProjectSchema } from "@/schemas/newProjectSchema";
+import { newProjectSchema } from "@/schemas";
 import { Textarea } from "../../ui/textarea";
 import { Dispatch, SetStateAction, useTransition } from "react";
 import { createProject } from "@/actions/project";

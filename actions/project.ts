@@ -2,8 +2,9 @@
 
 import { z } from "zod";
 import { currentProfile } from "./../lib/user";
-import { newProjectSchema } from "@/schemas/newProjectSchema";
+
 import { db } from "@/lib/db";
+import { newProjectSchema } from "@/schemas";
 
 export async function createProject(data: z.infer<typeof newProjectSchema>) {
   try {
