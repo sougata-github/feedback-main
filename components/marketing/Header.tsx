@@ -41,9 +41,9 @@ const Header = () => {
                   }}
                 />
                 <Link href="/dashboard" className="group">
-                  <Button variant="ghost">
+                  <Button variant="ghost" className="gap-1">
                     Enter
-                    <ChevronRight className="size-5 sm:group-hover:translate-x-[2px] transition-all mt-[2.5px]" />
+                    <ChevronRight className="size-5 sm:group-hover:translate-x-[2px] transition-all" />
                   </Button>
                 </Link>
               </div>
