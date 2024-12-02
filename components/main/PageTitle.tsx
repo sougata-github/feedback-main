@@ -2,7 +2,7 @@ interface Props {
   title: string;
 }
 
-const Header = ({ title }: Props) => {
+const PageTitle = ({ title }: Props) => {
   return (
     <h1 className="text-2xl md:text-4xl font-bold font-sempione max-w-lg">
       {title}
@@ -10,4 +10,4 @@ const Header = ({ title }: Props) => {
   );
 };
 
-export default Header;
+export default PageTitle;

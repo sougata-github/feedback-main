@@ -1,6 +1,6 @@
 import NewProjectDialog from "@/components/main/dashboard/NewProjectDialog";
 import Projects from "@/components/main/dashboard/Projects";
-import Header from "@/components/main/Header";
+import Header from "@/components/main/PageTitle";
 import { getAllProjects } from "@/lib/projects";
 
 const page = async () => {

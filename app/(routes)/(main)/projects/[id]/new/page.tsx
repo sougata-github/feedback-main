@@ -1,5 +1,5 @@
 import CopyButton from "@/components/CopyButton";
-import Header from "@/components/main/Header";
+import Header from "@/components/main/PageTitle";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getProject } from "@/lib/projects";
 
@@ -32,7 +32,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </CardHeader>
           <CardContent className="py-2">
             <code>
-              {`<my-widget project="${project.id}"></my-widget>`}
+              {`<my-widget projectId="${project.id}"></my-widget>`}
               {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
             </code>
           </CardContent>

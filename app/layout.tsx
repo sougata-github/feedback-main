@@ -5,6 +5,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import localFont from "next/font/local";
+// import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "EasyReview",
@@ -64,6 +65,8 @@ export default function RootLayout({
         <body
           className={`${GeistSans.className} ${lato.variable} ${sempione.variable} antialiased relative`}
         >
+          {/* <Script src="https://easyreview-widget.vercel.app/widget.umd.js"></Script>
+          <my-widget></my-widget> */}
           <Toaster />
           {children}
         </body>

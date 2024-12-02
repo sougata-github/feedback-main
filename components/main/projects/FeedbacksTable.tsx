@@ -16,6 +16,7 @@ const FeedbacksTable = ({ feedbacks }: { feedbacks: Feedback[] }) => {
           <TableHead className="w-[100px]">Name</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Message</TableHead>
+          <TableHead>Rating</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -24,6 +25,7 @@ const FeedbacksTable = ({ feedbacks }: { feedbacks: Feedback[] }) => {
             <TableCell className="font-medium">{feedback.name}</TableCell>
             <TableCell>{feedback.email}</TableCell>
             <TableCell>{feedback.message}</TableCell>
+            <TableCell>{feedback.rating}</TableCell>
           </TableRow>
         ))}
       </TableBody>
