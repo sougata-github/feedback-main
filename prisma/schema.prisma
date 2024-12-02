@@ -52,7 +52,7 @@ model Subscription{
   userId String @unique
   user Profile @relation(fields: [userId], references: [id])
 
-stripeCustomerId String 
-stripeSubscriptionId String
-subscribed Boolean
+  stripeCustomerId String 
+  stripeSubscriptionId String
+  subscribed Boolean
 }

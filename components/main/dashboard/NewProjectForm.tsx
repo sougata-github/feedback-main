@@ -46,6 +46,7 @@ const NewProjectForm = ({ setIsOpen }: Props) => {
         .then((data) => {
           if (data?.error) {
             toast.error(data.error);
+            return;
           }
 
           if (data?.project) {

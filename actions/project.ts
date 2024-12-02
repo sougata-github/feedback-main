@@ -14,6 +14,8 @@ export async function createProject(data: z.infer<typeof newProjectSchema>) {
       return { error: "Unauthorized! Failed to create project." };
     }
 
+    //todo: check for number of projects and subscription status.
+
     const { name, url, description } = data;
 
     const validatedFields = newProjectSchema.safeParse(data);
