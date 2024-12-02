@@ -16,6 +16,7 @@ model Profile {
       email String @db.Text
 
       projects Project[]
+      subscription Subscription?
 }
 
 model Project{
@@ -43,4 +44,15 @@ model Feedback {
 
   projectId String
   project Project @relation(fields: [projectId], references: [id])
+}
+
+model Subscription{
+  id String @id @default(uuid())
+
+  userId String @unique
+  user Profile @relation(fields: [userId], references: [id])
+
+stripeCustomerId String 
+stripeSubscriptionId String
+subscribed Boolean
 }
