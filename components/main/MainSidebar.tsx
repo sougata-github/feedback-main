@@ -12,9 +12,12 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { Project } from "@prisma/client";
-import { Home, Rocket, Sparkles, Wand2 } from "lucide-react";
+import { ArrowUpRight, Home, Rocket, Sparkles, Wand2 } from "lucide-react";
 
 import { Separator } from "../ui/separator";
+import { UserButton } from "./UserButton";
+
+const free = false;
 
 const MainSidebar = ({ projects }: { projects: Project[] }) => {
   return (
@@ -24,9 +27,11 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
           href="/"
           className="font-sempione font-semibold text-xl p-2 rounded-md w-full flex items-center"
         >
-          <div className="text-zinc-800 flex items-center gap-1">
-            <span>EasyReview</span>
-            <Sparkles className="size-4" />
+          <div className="flex items-center gap-2">
+            <div className="p-2 rounded-md bg-black">
+              <Sparkles className="size-4 text-white" />
+            </div>
+            <span className="text-zinc-800 ">EasyReview</span>
           </div>
         </Link>
       </SidebarHeader>
@@ -78,23 +83,40 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupContent className="text-black font-medium">
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/dashboard">
-                    <Rocket />
-                    <span>Upgrade to Pro</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {free ? (
+          <SidebarGroup>
+            <Link
+              href="/pricing"
+              className="flex items-center text-sm text-black font-medium gap-2 px-2 hover:bg-black/5 transition-all py-2 rounded-lg"
+            >
+              <Rocket className="size-4" />
+              <span>Upgrade to Pro</span>
+            </Link>
+          </SidebarGroup>
+        ) : (
+          <SidebarGroup>
+            <SidebarGroupLabel className="text-sm text-black">
+              Payments
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <Link href="/payments">
+                      <ArrowUpRight />
+                      <span>billing</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
-      <SidebarFooter></SidebarFooter>
+      <SidebarFooter className="px-2 py-4">
+        <UserButton />
+      </SidebarFooter>
     </Sidebar>
   );
 };

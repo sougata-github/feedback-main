@@ -60,7 +60,7 @@ export async function POST(req: Request) {
   if (!customer?.id) {
     return NextResponse.json({
       status: 500,
-      error: "Dailed to get customer id.",
+      error: "Failed to get customer id.",
     });
   }
 

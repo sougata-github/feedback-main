@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { getStripe } from "@/lib/stripe-client";
 import { Loader } from "lucide-react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SubscribeButton = ({ price }: Props) => {
-  const router = useRouter();
+  // const router = useRouter();
   const [loading, setloading] = useState<boolean>(false);
 
   const [error, setError] = useState<string | undefined>("");

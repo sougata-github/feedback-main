@@ -16,7 +16,7 @@ const page = async () => {
       </header>
 
       <div className="flex flex-col mt-12">
-        <h2 className="text-xl md:text-2xl font-semibold">Your Projects</h2>
+        <h2 className="text-lg md:text-xl font-semibold">Your Projects</h2>
         {!!projects && projects?.length > 0 ? (
           <Projects projects={projects || []} />
         ) : (
