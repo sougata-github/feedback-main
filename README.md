@@ -22,6 +22,10 @@
    - Filters and Date Ranges:
      like last 7 days, based on ratings etc.
 
+   - Edit & Delete project button
+     Editing project details: name, url and description.
+     Delete project button: Dialog to confirm.
+
 3. Premium Features:
 
    - Send emails to reviewers [thank them button].

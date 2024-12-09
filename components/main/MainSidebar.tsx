@@ -102,9 +102,9 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
               <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
-                    <Link href="/payments">
+                    <Link href="/plans">
                       <ArrowUpRight />
-                      <span>billing</span>
+                      <span>plans</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

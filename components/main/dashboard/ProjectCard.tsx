@@ -22,7 +22,7 @@ const ProjectCard = ({ project }: { project: ProjectWithFeedbacks }) => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="min-h-20 max-w-md line-clamp-2 text-sm">
+          <p className="min-h-20 max-w-md line-clamp-2 text-xs">
             {description}
           </p>
         </CardContent>
