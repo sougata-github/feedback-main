@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { getStripe } from "@/lib/stripe-client";
+import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 // import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,9 +10,11 @@ import { toast } from "sonner";
 
 interface Props {
   price: string;
+  className?: string;
+  buttonText?: string;
 }
 
-const SubscribeButton = ({ price }: Props) => {
+const SubscribeButton = ({ price, className, buttonText }: Props) => {
   // const router = useRouter();
   const [loading, setloading] = useState<boolean>(false);
 
@@ -56,10 +59,12 @@ const SubscribeButton = ({ price }: Props) => {
     <Button
       onClick={() => handleCheckout(price)}
       disabled={loading}
-      className="w-24 mt-4"
+      className={cn("w-24 mt-4", className)}
     >
       {loading ? (
         <Loader className="size-4 animate-spin transition-all" />
+      ) : buttonText ? (
+        buttonText
       ) : (
         "Subscribe"
       )}
