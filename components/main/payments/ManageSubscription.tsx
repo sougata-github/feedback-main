@@ -45,7 +45,7 @@ const ManageSubscription = () => {
     <Button
       onClick={redirectToCustomerPortal}
       disabled={loading}
-      className="w-24 mt-4"
+      className="w-28 mt-4"
     >
       {loading ? (
         <Loader className="size-4 animate-spin transition-all" />
