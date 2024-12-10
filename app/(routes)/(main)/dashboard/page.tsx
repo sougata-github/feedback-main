@@ -2,11 +2,24 @@ import NewProjectDialog from "@/components/main/dashboard/NewProjectDialog";
 import Projects from "@/components/main/dashboard/Projects";
 import Header from "@/components/main/PageTitle";
 import SubscribeButton from "@/components/main/payments/SubscribeButton";
+import { Button } from "@/components/ui/button";
 import { monthlyPlanId } from "@/constants";
 import { getAllProjects } from "@/lib/projects";
+import { getSubscriptionDetails } from "@/lib/subscriptions";
+import { currentProfile } from "@/lib/user";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const page = async () => {
+  const profile = await currentProfile();
+
+  if (!profile) {
+    redirect("/sign-up");
+  }
+
   const projects = await getAllProjects();
+
+  const subscription = await getSubscriptionDetails(profile?.id);
 
   if (!projects) {
     return (
@@ -14,11 +27,17 @@ const page = async () => {
     );
   }
 
+  const plan = subscription && subscription.subscribed ? "premium" : "free";
+
   return (
     <section>
       <header className="flex flex-col gap-2 md:gap-0 md:flex-row justify-between md:items-center">
         <Header title="Dashboard" />
-        <NewProjectDialog />
+        {plan === "free" && (
+          <Button asChild className="w-fit">
+            <Link href="/subscriptions">Upgrade</Link>
+          </Button>
+        )}
       </header>
 
       <div className="flex flex-col mt-12">

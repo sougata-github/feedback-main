@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import NewProjectForm from "./NewProjectForm";
 import { Button } from "../../ui/button";
-import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 
 const NewProjectDialog = () => {
@@ -19,10 +18,7 @@ const NewProjectDialog = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="w-fit">
-          <PlusIcon />
-          Create Project
-        </Button>
+        <Button className="w-fit text-sm">Create Project</Button>
       </DialogTrigger>
       <DialogContent className="max-w-xs rounded-md sm:max-w-md">
         <DialogHeader className="text-left">

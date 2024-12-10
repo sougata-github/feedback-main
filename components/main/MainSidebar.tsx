@@ -16,6 +16,7 @@ import { ArrowUpRight, Home, Rocket, Sparkles, Wand2 } from "lucide-react";
 
 import { Separator } from "../ui/separator";
 import { UserButton } from "./UserButton";
+import NewProjectDialog from "./dashboard/NewProjectDialog";
 
 const free = false;
 
@@ -37,6 +38,11 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
       </SidebarHeader>
       <Separator />
       <SidebarContent>
+        <SidebarGroup className="mt-4">
+          <SidebarGroupContent>
+            <NewProjectDialog />
+          </SidebarGroupContent>
+        </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel className="text-sm text-black">
             Overview
