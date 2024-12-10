@@ -2,9 +2,8 @@
 
 import PageTitle from "@/components/main/PageTitle";
 import BillingToggle from "@/components/main/payments/BillingToggle";
-import PricingCard, {
-  PricingCardProps,
-} from "@/components/main/payments/PricingCard";
+import PricingCard from "@/components/main/payments/PricingCard";
+import { getPricingPlans } from "@/constants";
 import { useState } from "react";
 
 const PricingPage = () => {
@@ -12,28 +11,7 @@ const PricingPage = () => {
     "monthly" | "annually"
   >("monthly");
 
-  const pricingPlans: Array<Omit<PricingCardProps, "billingFrequency">> = [
-    {
-      title: "Free",
-      price: { monthly: "$0", annually: "$0" },
-      description: "Perfect for getting started",
-      features: ["1 project", "Basic support", "Limited storage"],
-      ctaText: "Get Started",
-    },
-    {
-      title: "Pro",
-      price: { monthly: "$4.99", annually: "$39.99" },
-      description: `${
-        billingFrequency === "annually"
-          ? "Best value for users"
-          : "Ideal plan for users"
-      }
-        `,
-      features: ["Unlimited projects", "Priority support", "Early access"],
-      ctaText: "Subscribe",
-      popular: true,
-    },
-  ];
+  const pricingPlans = getPricingPlans(billingFrequency);
 
   return (
     <section className="container mx-auto px-4">
