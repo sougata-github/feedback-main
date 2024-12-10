@@ -25,7 +25,7 @@ const Pricing = () => {
         <BillingToggle onToggle={setBillingFrequency} />
       </div>
 
-      <ul className="flex flex-col lg:flex-row gap-4 mt-4">
+      <ul className="flex flex-col sm:flex-row max-sm:gap-4 mt-4 gap-2">
         {pricingPlans.map((plan, index) => (
           <PricingCard
             key={index}
