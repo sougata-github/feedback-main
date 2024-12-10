@@ -1,9 +1,7 @@
 import NewProjectDialog from "@/components/main/dashboard/NewProjectDialog";
 import Projects from "@/components/main/dashboard/Projects";
 import Header from "@/components/main/PageTitle";
-import SubscribeButton from "@/components/main/payments/SubscribeButton";
 import { Button } from "@/components/ui/button";
-import { monthlyPlanId } from "@/constants";
 import { getAllProjects } from "@/lib/projects";
 import { getSubscriptionDetails } from "@/lib/subscriptions";
 import { currentProfile } from "@/lib/user";
@@ -51,8 +49,6 @@ const page = async () => {
           </div>
         )}
       </div>
-
-      <SubscribeButton price={monthlyPlanId} />
     </section>
   );
 };
