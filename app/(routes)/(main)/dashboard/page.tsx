@@ -8,6 +8,12 @@ import { getAllProjects } from "@/lib/projects";
 const page = async () => {
   const projects = await getAllProjects();
 
+  if (!projects) {
+    return (
+      <p className="text-xl">There was an error fetching your projects.</p>
+    );
+  }
+
   return (
     <section>
       <header className="flex flex-col gap-2 md:gap-0 md:flex-row justify-between md:items-center">

@@ -13,21 +13,19 @@ const ProjectCard = ({ project }: { project: ProjectWithFeedbacks }) => {
   const { id, name, url, description, feedbacks } = project;
 
   return (
-    <Link href={`/projects/${id}`}>
-      <Card className="overflow-hidden">
+    <Link href={`/projects/${id}`} className="block h-full">
+      <Card className="flex flex-col h-full">
         <CardHeader>
-          <CardTitle>{name}</CardTitle>
-          <CardDescription className="max-w-xs line-clamp-1 text-xs">
-            {url}
+          <CardTitle className="text-base line-clamp-1">{name}</CardTitle>
+          <CardDescription>
+            <p className="text-sm text-muted-foreground line-clamp-1">{url}</p>
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <p className="min-h-20 max-w-md line-clamp-2 text-xs">
-            {description}
-          </p>
+        <CardContent className="flex-grow">
+          <p className="text-sm line-clamp-3">{description}</p>
         </CardContent>
         <CardFooter>
-          <p className="text-xs">{feedbacks.length} reviews</p>
+          <span className="text-xs">{feedbacks?.length} reviews</span>
         </CardFooter>
       </Card>
     </Link>
