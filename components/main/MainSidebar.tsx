@@ -107,12 +107,6 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
                       <span>subscriptions</span>
                     </Link>
                   </SidebarMenuButton>
-                  <SidebarMenuButton asChild>
-                    <Link href="/pricing">
-                      <ArrowUpRight />
-                      <span>pricing</span>
-                    </Link>
-                  </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>
             </SidebarGroupContent>
