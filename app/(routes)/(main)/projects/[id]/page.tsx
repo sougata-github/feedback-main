@@ -1,10 +1,7 @@
 import PageTitle from "@/components/main/PageTitle";
 import FeedbacksTable from "@/components/main/projects/FeedbacksTable";
 import NoFeedback from "@/components/main/projects/NoFeedback";
-
-import { Button } from "@/components/ui/button";
 import { getProject } from "@/lib/projects";
-import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -20,13 +17,13 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     <section>
       {/* project info */}
       <header className="space-y-4">
-        <PageTitle title={project.name || ""} />
-        <p className="max-w-lg text-black/60">{project.description}</p>
-        <Button asChild variant="outline" className="mt-4">
-          <Link href={project.url} target="_blank" rel="noopener noreferrer">
-            View Project <ExternalLink className="ml-2 h-4 w-4" />
+        <div className="flex gap-1 items-center">
+          <Link href={project?.url}>
+            <PageTitle title={project.name || ""} />
           </Link>
-        </Button>
+        </div>
+
+        <p className="max-w-2xl text-black/60">{project.description}</p>
       </header>
 
       <div className="mt-12">
