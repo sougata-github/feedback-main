@@ -25,3 +25,5 @@ export const getPricingPlans = (billingFrequency: "monthly" | "annually") => {
     },
   ] as Array<Omit<PricingCardProps, "billingFrequency">>;
 };
+
+export const numberOfFreeProjects = 3;

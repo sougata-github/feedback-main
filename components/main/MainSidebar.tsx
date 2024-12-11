@@ -12,15 +12,18 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { Project } from "@prisma/client";
-import { ArrowUpRight, Home, Rocket, Sparkles, Wand2 } from "lucide-react";
+import { ArrowUpRight, LineChart, Rocket, Sparkles, Wand2 } from "lucide-react";
 
 import { Separator } from "../ui/separator";
 import { UserButton } from "./UserButton";
-import NewProjectDialog from "./dashboard/NewProjectDialog";
 
-const free = false;
-
-const MainSidebar = ({ projects }: { projects: Project[] }) => {
+const MainSidebar = ({
+  projects,
+  free,
+}: {
+  projects: Project[];
+  free: boolean;
+}) => {
   return (
     <Sidebar>
       <SidebarHeader className="flex items-center justify-start pt-4 md:pt-6">
@@ -38,11 +41,6 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
       </SidebarHeader>
       <Separator />
       <SidebarContent>
-        <SidebarGroup className="mt-4">
-          <SidebarGroupContent>
-            <NewProjectDialog />
-          </SidebarGroupContent>
-        </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel className="text-sm text-black">
             Overview
@@ -52,7 +50,7 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/dashboard">
-                    <Home />
+                    <LineChart />
                     <span>dashboard</span>
                   </Link>
                 </SidebarMenuButton>
@@ -91,13 +89,14 @@ const MainSidebar = ({ projects }: { projects: Project[] }) => {
 
         {free ? (
           <SidebarGroup>
-            <Link
-              href="/pricing"
-              className="flex items-center text-sm text-black font-medium gap-2 px-2 hover:bg-black/5 transition-all py-2 rounded-lg"
-            >
-              <Rocket className="size-4" />
-              <span>Upgrade to Pro</span>
-            </Link>
+            <SidebarGroupLabel className="text-sm text-black">
+              <Link
+                href="/subscriptions"
+                className="flex items-center gap-2 hover:bg-black/5 transition-all p-2 rounded-lg w-full"
+              >
+                <Rocket className="size-4" /> <span>Upgrade to Pro</span>
+              </Link>
+            </SidebarGroupLabel>
           </SidebarGroup>
         ) : (
           <SidebarGroup>

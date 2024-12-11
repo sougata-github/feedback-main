@@ -20,7 +20,11 @@ const page = async () => {
 
   const subscription = await getSubscriptionDetails(profile.id);
 
-  const plan = subscription && subscription.subscribed ? "premium" : "free";
+  const plan = !subscription
+    ? "free"
+    : subscription && subscription.subscribed
+    ? "premium"
+    : "free";
 
   return (
     <section>

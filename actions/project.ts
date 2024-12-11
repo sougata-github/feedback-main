@@ -5,6 +5,9 @@ import { currentProfile } from "./../lib/user";
 
 import { db } from "@/lib/db";
 import { newProjectSchema } from "@/schemas";
+import { getSubscriptionDetails } from "@/lib/subscriptions";
+import { numberOfFreeProjects } from "@/constants";
+import { getNumberOfProjects } from "@/lib/projects";
 
 export async function createProject(data: z.infer<typeof newProjectSchema>) {
   try {
@@ -14,7 +17,17 @@ export async function createProject(data: z.infer<typeof newProjectSchema>) {
       return { error: "Unauthorized! Failed to create project." };
     }
 
-    //todo: check for number of projects and subscription status.
+    const subscription = await getSubscriptionDetails(profile?.userId);
+    const totalProjects = await getNumberOfProjects(profile?.id);
+
+    if (
+      subscription &&
+      !subscription?.subscribed &&
+      totalProjects &&
+      totalProjects >= numberOfFreeProjects
+    ) {
+      throw new Error("Upgrade to pro to create more projects");
+    }
 
     const { name, url, description } = data;
 

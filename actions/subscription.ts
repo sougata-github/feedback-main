@@ -24,7 +24,7 @@ export async function updateSubscription(stripeCustomerId: string) {
   }
 }
 
-export async function canelSubscription(stripeCustomerId: string) {
+export async function cancelSubscription(stripeCustomerId: string) {
   try {
     const profile = await currentProfile();
 

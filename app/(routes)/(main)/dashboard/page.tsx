@@ -2,22 +2,13 @@ import NewProjectDialog from "@/components/main/dashboard/NewProjectDialog";
 import Projects from "@/components/main/dashboard/Projects";
 import Header from "@/components/main/PageTitle";
 import { Button } from "@/components/ui/button";
-import { getAllProjects } from "@/lib/projects";
-import { getSubscriptionDetails } from "@/lib/subscriptions";
-import { currentProfile } from "@/lib/user";
+import { canCreateMoreProjects, getAllProjects } from "@/lib/projects";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const page = async () => {
-  const profile = await currentProfile();
-
-  if (!profile) {
-    redirect("/sign-up");
-  }
-
   const projects = await getAllProjects();
 
-  const subscription = await getSubscriptionDetails(profile?.id);
+  const canCreate = await canCreateMoreProjects();
 
   if (!projects) {
     return (
@@ -25,14 +16,14 @@ const page = async () => {
     );
   }
 
-  const plan = subscription && subscription.subscribed ? "premium" : "free";
-
   return (
     <section>
       <header className="flex flex-col gap-2 md:gap-0 md:flex-row justify-between md:items-center">
         <Header title="Dashboard" />
-        {plan === "free" && (
-          <Button asChild className="w-fit">
+        {canCreate ? (
+          <NewProjectDialog />
+        ) : (
+          <Button className="w-fit">
             <Link href="/subscriptions">Upgrade</Link>
           </Button>
         )}
