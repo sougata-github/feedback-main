@@ -6,9 +6,7 @@ import { Button } from "@/components/ui/button";
 import { canCreateMoreProjects, getAllProjects } from "@/lib/projects";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
-
-const DashboardContent = async () => {
+async function getDashboardData() {
   const projectsPromise = getAllProjects();
   const canCreatePromise = canCreateMoreProjects();
 
@@ -16,6 +14,12 @@ const DashboardContent = async () => {
     projectsPromise,
     canCreatePromise,
   ]);
+
+  return { projects, canCreate };
+}
+
+const DashboardContent = async () => {
+  const { projects, canCreate } = await getDashboardData();
 
   if (!projects) {
     return (
@@ -51,7 +55,7 @@ const DashboardContent = async () => {
   );
 };
 
-const DashboardPage = () => {
+export default function DashboardPage() {
   return (
     <section>
       <Suspense fallback={<p>Loading...</p>}>
@@ -59,6 +63,4 @@ const DashboardPage = () => {
       </Suspense>
     </section>
   );
-};
-
-export default DashboardPage;
+}
