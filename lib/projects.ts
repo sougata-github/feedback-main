@@ -1,3 +1,5 @@
+"use server";
+
 import { numberOfFreeProjects } from "@/constants";
 import { db } from "./db";
 import { getSubscriptionDetails } from "./subscriptions";

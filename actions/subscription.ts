@@ -1,16 +1,9 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { currentProfile } from "@/lib/user";
 
 export async function updateSubscription(stripeCustomerId: string) {
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      throw new Error("User profile missing!");
-    }
-
     await db.subscription.update({
       where: {
         stripeCustomerId,
@@ -20,18 +13,12 @@ export async function updateSubscription(stripeCustomerId: string) {
       },
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error in updating subscription.", error);
   }
 }
 
 export async function cancelSubscription(stripeCustomerId: string) {
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      throw new Error("User profile missing!");
-    }
-
     await db.subscription.update({
       where: {
         stripeCustomerId,
@@ -41,6 +28,6 @@ export async function cancelSubscription(stripeCustomerId: string) {
       },
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error in deleting subscription.", error);
   }
 }

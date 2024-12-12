@@ -1,3 +1,5 @@
+"use server";
+
 import { userData } from "@/types";
 import { db } from "./db";
 import { auth } from "@clerk/nextjs/server";

@@ -64,7 +64,7 @@ export async function POST() {
   try {
     const url = await stripe.billingPortal.sessions.create({
       customer: customer?.id,
-      return_url: `${baseUrl}/plans`,
+      return_url: `${baseUrl}/subscriptions`,
     });
 
     if (!url) {

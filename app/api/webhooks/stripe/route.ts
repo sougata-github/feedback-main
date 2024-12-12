@@ -36,9 +36,9 @@ export async function POST(req: Request) {
   const data = event.data.object as Stripe.Subscription;
 
   if (relevantEvents.has(event.type)) {
-    if (event.type === "customer.subscription.created") {
-      const { customer } = data;
-      await updateSubscription(customer as string);
+    if (event.type === "checkout.session.completed") {
+      const { id } = data;
+      await updateSubscription(id as string);
     } else if (event.type === "customer.subscription.deleted") {
       const { customer } = data;
       await cancelSubscription(customer as string);
