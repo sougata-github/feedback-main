@@ -33,13 +33,13 @@ export async function getProject(id: string) {
 }
 
 export async function getAllProjects() {
+  const profile = await currentProfile();
+
+  if (!profile) {
+    throw new Error("Unauthorized!");
+  }
+
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      throw new Error("Unauthorized!");
-    }
-
     const project = await db.project.findMany({
       where: {
         authorId: profile.id,
@@ -52,7 +52,6 @@ export async function getAllProjects() {
     if (!project) {
       throw new Error("Project not found");
     }
-
     return project;
   } catch (error) {
     console.log(error);
@@ -61,12 +60,6 @@ export async function getAllProjects() {
 
 export async function getNumberOfProjects(authorId: string) {
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      throw new Error("Unauthorized!");
-    }
-
     const totalProjects = await db.project.count({
       where: {
         authorId,
@@ -80,13 +73,13 @@ export async function getNumberOfProjects(authorId: string) {
 }
 
 export async function canCreateMoreProjects(): Promise<boolean | void> {
+  const profile = await currentProfile();
+
+  if (!profile) {
+    throw new Error("Unauthorized!");
+  }
+
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      throw new Error("Unauthorized!");
-    }
-
     const [subscription, totalProjects] = await Promise.all([
       getSubscriptionDetails(profile.id),
       getNumberOfProjects(profile.id),
