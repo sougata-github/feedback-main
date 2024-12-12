@@ -37,22 +37,17 @@ export async function createUser(data: userData) {
 
 //checks for an existing user
 export const currentProfile = async () => {
-  try {
-    const { userId } = await auth();
+  const { userId } = await auth();
 
-    if (!userId) {
-      return null;
-    }
-
-    const profile = await db.profile.findUnique({
-      where: {
-        userId,
-      },
-    });
-
-    return profile;
-  } catch (error) {
-    console.log("Error in currentProfile:", error);
+  if (!userId) {
     return null;
   }
+
+  const profile = await db.profile.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  return profile;
 };
