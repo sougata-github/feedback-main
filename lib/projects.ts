@@ -6,13 +6,13 @@ import { getSubscriptionDetails } from "./subscriptions";
 import { currentProfile } from "./user";
 
 export async function getProject(id: string) {
+  const profile = await currentProfile();
+
+  if (!profile) {
+    throw new Error("Unauthorized!");
+  }
+
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      throw new Error("Unauthorized!");
-    }
-
     const project = await db.project.findUnique({
       where: {
         id,

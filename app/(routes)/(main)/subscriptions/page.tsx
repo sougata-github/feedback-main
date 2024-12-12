@@ -10,12 +10,13 @@ import {
 } from "@/components/ui/card";
 import { getSubscriptionDetails } from "@/lib/subscriptions";
 import { currentProfile } from "@/lib/user";
+import { redirect } from "next/navigation";
 
 const page = async () => {
   const profile = await currentProfile();
 
   if (!profile) {
-    return null;
+    return redirect("sign-up");
   }
 
   const subscription = await getSubscriptionDetails(profile.id);

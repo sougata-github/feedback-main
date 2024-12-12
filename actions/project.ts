@@ -10,13 +10,13 @@ import { numberOfFreeProjects } from "@/constants";
 import { getNumberOfProjects } from "@/lib/projects";
 
 export async function createProject(data: z.infer<typeof newProjectSchema>) {
+  const profile = await currentProfile();
+
+  if (!profile) {
+    return { error: "Unauthorized! Failed to create project." };
+  }
+
   try {
-    const profile = await currentProfile();
-
-    if (!profile) {
-      return { error: "Unauthorized! Failed to create project." };
-    }
-
     const subscription = await getSubscriptionDetails(profile?.userId);
     const totalProjects = await getNumberOfProjects(profile?.id);
 
