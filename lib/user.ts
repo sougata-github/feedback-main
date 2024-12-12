@@ -52,6 +52,7 @@ export const currentProfile = async () => {
 
     return profile;
   } catch (error) {
-    console.log(error);
+    console.log("Error in currentProfile:", error);
+    return null;
   }
 };

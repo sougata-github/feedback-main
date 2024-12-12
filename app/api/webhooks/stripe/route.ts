@@ -37,8 +37,8 @@ export async function POST(req: Request) {
 
   if (relevantEvents.has(event.type)) {
     if (event.type === "checkout.session.completed") {
-      const { id } = data;
-      await updateSubscription(id as string);
+      const { customer } = data;
+      await updateSubscription(customer as string);
     } else if (event.type === "customer.subscription.deleted") {
       const { customer } = data;
       await cancelSubscription(customer as string);
