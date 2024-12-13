@@ -72,6 +72,9 @@ export async function POST(req: Request) {
       customer: customer.id,
       payment_method_types: ["card"],
       mode: "subscription",
+      metadata: {
+        plan: price,
+      },
       line_items: [
         {
           price,
