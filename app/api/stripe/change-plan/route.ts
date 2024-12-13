@@ -10,52 +10,17 @@ export async function POST() {
     return NextResponse.json({ status: 401, error: "Unauthorized" });
   }
 
+  //checking for existing user subscription
   const userSubscription = await db.subscription.findUnique({
     where: {
       userId: profile.id,
     },
   });
 
-  let customer;
-
-  if (userSubscription) {
-    customer = {
-      id: userSubscription.stripeCustomerId,
-    };
-  } else {
-    //create a new subscription
-    const customerData: {
-      metadata: {
-        dbId: string;
-      };
-    } = {
-      metadata: {
-        dbId: profile.id,
-      },
-    };
-
-    const response = await stripe.customers.create(customerData);
-
-    if (!response) {
-      return NextResponse.json({ status: 500, error: "Response not found" });
-    }
-
-    customer = { id: response?.id };
-
-    await db.subscription.create({
-      data: {
-        userId: profile.id,
-        stripeCustomerId: customer.id,
-        stripeSubscriptionId: "",
-        subscribed: false,
-      },
-    });
-  }
-
-  if (!customer?.id) {
+  if (!userSubscription || !userSubscription.subscribed) {
     return NextResponse.json({
-      status: 500,
-      error: "Failed to get customer id.",
+      status: 400,
+      error: "You must be subscribed to change your plan.",
     });
   }
 
@@ -63,7 +28,7 @@ export async function POST() {
 
   try {
     const url = await stripe.billingPortal.sessions.create({
-      customer: customer?.id,
+      customer: userSubscription.stripeCustomerId,
       return_url: `${baseUrl}/subscriptions`,
     });
 
