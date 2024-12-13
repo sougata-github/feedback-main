@@ -67,6 +67,8 @@ export async function POST(req: Request) {
         const subscriptionId = subscription.id;
         const stripePlan = subscription.items.data[0].price.product as string;
 
+        console.log(stripePlan);
+
         await updateSubscription(stripeCustomerId, subscriptionId, stripePlan);
         break;
       }
