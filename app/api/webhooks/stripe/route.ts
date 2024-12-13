@@ -42,8 +42,6 @@ export async function POST(req: Request) {
         const session = event.data.object as Stripe.Checkout.Session;
         const stripeCustomerId = session.customer as string;
 
-        console.log(session, session.metadata);
-
         if (session.subscription) {
           const subscriptionId = session.subscription as string;
           const stripePlan = session.metadata?.plan;
@@ -68,8 +66,6 @@ export async function POST(req: Request) {
         const stripeCustomerId = subscription.customer as string;
         const subscriptionId = subscription.id;
         const stripePlan = subscription.items.data[0].price.id as string;
-
-        console.log(stripePlan);
 
         await updateSubscription(stripeCustomerId, subscriptionId, stripePlan);
         break;
